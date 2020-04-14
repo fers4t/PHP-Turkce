@@ -256,12 +256,129 @@
 	// }
 
 
-// 8. veritabaninda sonuc filtreleme 
-	// aslinda yukaridakinden pek bir farki yok. $sql degiskenini nasil degistirirsek ona gore cikti verecek zira. haliyle, filtrelemeyi dogrudan sql'de yapiyoruz ve php bize ona gore cikti veriyor. YALNIZCA $sql DEGISKENINI DEGISTIRMEK YETERLI OLUYOR.
-	// ingilizce bilmenin onemli oldugu noktalardan biri burasi. 
-	// zira veritabaninda veri filtrelerken "where" kullaniyoruz. where, bu baglam icinde "neredeyse orada" anlamina gelmekte. 
-	// yani; SELECT id, adi, soyadi FROM Users WHERE soyadi='Ozcelik' dedigimizde, "nerede soyadi sutununun degeri Ozcelik ise oradan cek" demis oluyoruz
+// 8. veritabaninda sonuc filtreleme/arama
+	// // aslinda yukaridakinden pek bir farki yok. $sql degiskenini nasil degistirirsek ona gore cikti verecek zira. haliyle, filtrelemeyi dogrudan sql'de yapiyoruz ve php bize ona gore cikti veriyor. YALNIZCA $sql DEGISKENINI DEGISTIRMEK YETERLI OLUYOR.
+	// // ingilizce bilmenin onemli oldugu noktalardan biri burasi. 
+	// // zira veritabaninda veri filtrelerken "where" kullaniyoruz. where, bu baglam icinde "neredeyse orada" anlamina gelmekte. 
+	// // yani; SELECT id, adi, soyadi FROM Users WHERE soyadi='Ozcelik' dedigimizde, "nerede soyadi sutununun degeri Ozcelik ise oradan cek" demis oluyoruz
+	// // ornek sql kodu :  SELECT column_name(s) FROM table_name WHERE column_name operator value  
 
+	// $servername = "localhost";
+	// $username = "root";
+	// $password = "";
+	// $db = "learn";
+
+	// // baglan 
+	// $conn = mysqli_connect($servername, $username, $password, $db);
+
+	// // test et 	
+	// if (!$conn) {
+	// 	die("Olmadi yar: " . mysqli_connect_error());
+	// }
+
+	// $sql = "SELECT id, adi, soyadi FROM Users WHERE adi='Iron'"; // <------ onemli olan burasi
+	// $sonuc = mysqli_query($conn, $sql);
+
+	// if (mysqli_num_rows($sonuc) > 0) {
+	// 	while ($row = mysqli_fetch_assoc($sonuc)){
+	// 		echo "Id: " .$row["id"]. "  //  " . "Adi ve Soyadi: <b>" . $row["adi"] . " " .$row["soyadi"] . "</b><br>";
+	// 	}
+	// } else {
+	// 	echo "Sonuc yok...";
+	// }
+
+	// // ciktisi soyle olur
+	// 	// Id: 6 // Adi ve Soyadi: Iron Maiden
+	// 	// Id: 9 // Adi ve Soyadi: Iron Maiden 
+
+
+// 9. veri siralama / order by
+	// // verileri artan-azalan(ascending-descending) sekilde siralamak icin kullaniyoruz 
+	// // ornek kod -> SELECT column_name(s) FROM table_name ORDER BY column_name(s) ASC|DESC 
+
+	// $servername = "localhost";
+	// $username = "root";
+	// $password = "";
+	// $db = "learn";
+
+	// // baglan 
+	// $conn = mysqli_connect($servername, $username, $password, $db);
+
+	// // test et 	
+	// if (!$conn) {
+	// 	die("Olmadi yar: " . mysqli_connect_error());
+	// }	
+
+	// $sql = "SELECT id, adi, soyadi FROM Users ORDER BY adi "; // <------ DESC veya ASC kullanarak siralama yonunu degistirebiliyoruz. kullanmak zorunda da degiliz.
+	// // ayrica burada ek olarak "WHERE adi='Iron' seklinde bir filtreleme yaparsak, adi Iron olan satirlar arasinda siralama yapacaktir 
+	// // orn. kod -> SELECT id, adi, soyadi FROM Users WHERE adi='Fersat' ORDER BY adi 
+	// $sonuc = mysqli_query($conn, $sql);
+
+	// if (mysqli_num_rows($sonuc) > 0) {
+	// 	while ($row = mysqli_fetch_assoc($sonuc)){
+	// 		echo "Id: " .$row["id"]. "  //  " . "Adi ve Soyadi: <b>" . $row["adi"] . " " .$row["soyadi"] . "</b><br>";
+	// 	}
+	// } else {
+	// 	echo "Sonuc yok...";
+	// }
+
+	// // ciktisi soyle olur 
+	// // Id: 5 // Adi ve Soyadi: Fersat The Gray
+	// // Id: 12 // Adi ve Soyadi: Fersat Ozcelik
+
+// 10. veri silme / delete data 
+	// // gorundugu uzere artik sadece $sql degiskeniyle ilgileniyoruz.
+	// // orn. veri silme kodu -> DELETE FROM Users WHERE id=3
+	// $servername = "localhost";
+	// $username = "root";
+	// $password = "";
+	// $db = "learn";
+
+	// // baglan 
+	// $conn = mysqli_connect($servername, $username, $password, $db);
+
+	// // test et 	
+	// if (!$conn) {
+	// 	die("Olmadi yar: " . mysqli_connect_error());
+	// }	
+
+	// $sql = "DELETE FROM Users WHERE id=3"; 
+	// // burada $sonuc degiskenine gerek yok. zira sonuc yok. siliyoruz :) ancak basari ciktisi verebiliriz.
+
+	// if (mysqli_query($conn, $sql)) {
+	// 	echo "Silindi";
+	// }else {
+	// 	echo "Su kayit silinemedi:" / mysqli_error($conn);
+	// }
+
+// 11. veri guncelleme / update data 
+	// // burada UPDATE ifadesini/statement kullaniyoruz. WHERE statementi ile de hangi verilerin degistirilecegini belirtiyoruz. 
+	// // WHERE KULLANMAZSAK TUM VERILER DEGISIR.
+	// $servername = "localhost";
+	// $username = "root";
+	// $password = "";
+	// $db = "learn";
+
+	// // baglan 
+	// $conn = mysqli_connect($servername, $username, $password, $db);
+
+	// // test et 	
+	// if (!$conn) {
+	// 	die("Olmadi yar: " . mysqli_connect_error());
+	// }	
+
+	// $sql = "UPDATE Users SET soyadi='Ozcelik' WHERE id=2"; // <--- Turkcesi: Users tablosunda, id'i 2 olan satirda soyadi kolonunu Ozcelik olarak degistir. Burada WHERE ile oynayarak toplu degisiklikler de yapabiliriz 
+
+	// if (mysqli_query($conn, $sql)) {
+	// 	echo "Degisti";
+	// }else {
+	// 	echo "Su kayit degismedi:" / mysqli_error($conn);
+	// }
+
+// 12. sql ciktisini sinirlama / limit data 
+	// LIMIT ve OFFSET kavramlari burada karsimiza cikiyor.
+	// LIMIT ile kac veri cikmasini istedigimizi belirtiyoruz.
+	// OFFSET ile nereden baslamasi gerektigini belirtiyoruz. Or. OFFSET 15, 16. veriden basla demektir.
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -273,10 +390,11 @@
 	// test et 	
 	if (!$conn) {
 		die("Olmadi yar: " . mysqli_connect_error());
-	}
+	}	
 
-	$sql = "SELECT id, adi, soyadi FROM Users"; // <------ onemli olan burasi
-	$sonuc = mysqli_query($conn, $sql);
+	$sql = "SELECT * FROM Users LIMIT 3"; // <--- Turkcesi: Users tablosunda, id'i 2 olan satirda soyadi kolonunu Ozcelik olarak degistir. Burada WHERE ile oynayarak toplu degisiklikler de yapabiliriz 
+
+	$sonuc = mysqli_query($conn, $sql); // <-- ve tabi ki verileri goruntulememiz gerek. bunun icin buradan asagidaki kodlari yaziyoruz. yukarisi ile kiyaslayarak daha iyi anlayabilirsiniz.
 
 	if (mysqli_num_rows($sonuc) > 0) {
 		while ($row = mysqli_fetch_assoc($sonuc)){
@@ -285,11 +403,6 @@
 	} else {
 		echo "Sonuc yok...";
 	}
-
-
-
-
-
 
 
 
