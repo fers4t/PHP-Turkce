@@ -1,11 +1,13 @@
 <?php 
-// 
-// 
-// 
-//		1 - GIRIS 	 
-// 
-// 
 ////////////////////////////
+//		1 - GIRIS 		  // 
+////////////////////////////
+
+// PHP ile veritabaninda islem yapmamiz icin 3 farkli yok var.
+// 1.si MySQLi OOP
+// 2.si MySQLi Procedural
+// 3.su PDO
+// Bunlarin hangisinin size hitap ettigini ancak siz bilebilirsiniz. Kisa bi arastirma ile fazlaca bilgiye ulasabilirsiniz. Ben 2. secenegi sectim ve anlatimi ona gore yaptim. Asagida yine de ucunun girisini ornek olarak verdim
 
 // // 1. mysqli oop
 // 	$servername = "localhost";
@@ -60,8 +62,6 @@
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
 // 2. veritabani olusturma 
 	// $servername = "localhost";
 	// $username = "root";
