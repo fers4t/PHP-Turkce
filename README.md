@@ -1,2 +1,3 @@
-# PHP-T-rk-e
-Burada PHP eğitimimi Türkçe olarak sizlerle paylaşmak istiyorum.
+# PHP Türkçe Hap Dökümantasyon
+
+- Burası düzenlenecek.
