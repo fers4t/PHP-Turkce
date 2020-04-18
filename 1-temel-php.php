@@ -307,4 +307,169 @@
 		# return
 			// TODO
 
+
+// 12. dizgiler / arrays 
+	// diziler sayesinde bir degiskende birden cok deger saklayabiliriz.
+	// array() fonksiyonu, dzgi olusturmak icin kullanilir.
+	// count() fonksiyonu, dizginin uzunlugunu ogrenmemizi saglar. or. count($meyve). asagidaki ornege gore "3" ciktisini verecektir.
+	// or. 
+	// 	$meyve = array("elma", "armut", "kiraz");
+	// 	echo "En sevdigim meyveler " . $meyve[0] . ", " . $meyve[1];
+
+	// 	dizgiler olmasaydi, bunu ancak soyle yazabilirdik: $meyve1 = "elma"; $meyve2 = "armut"; $meyve3 = "kiraz"; ....
+
+	// 3 tip array vardir.
+	// 	a. indexed arrays
+	// 	b. associative (cagrisimsal) arrays
+	// 	c. multidimensional (cok boyutlu) arrays
+
+	// 	a. indexed arrays
+	// 		index, dizgilerde otomatik olarak atanir ve 0'dan baslar. yani bir dizginin 1. ogesi, index siralamasinda 0'dan baslar.
+	// 		mesela yukaridaki ornekte $meyve[0] = elma'dir.
+	// 		orn.
+		// 		$meyve = array("elma", "armut", "kiraz");
+		// 		$uzunluk = count($meyve); // <-- burada dizgi uzunlugunu hesapladik
+
+		// 		for ($x = 0; $x < $uzunluk; $x++){
+		// 			echo $meyve[$x]; // <-- burada x'e basta sifir verdik, ust satirda da 0'dan dizgi uzunluguna kadar tekrar etmesini istedik, son parametrede de x'in birer birer artmasini istedik.
+		// 			echo "<br>";
+		// 		}
+		// 		// elma
+		// 		// artmut
+		// 		// kiraz 			seklinde cikti verecektir.
+
+	//  b. associative (cagrisimsal) arrays
+	//		associative dizgilerde; dizgi elemanlarini baska verilerle eslestiririz. mesela ders isimlerinden olusan bir dizgiyi, o derslerden alinan notlarla elestirebiliriz. ornekle daha iyi anlasilacaktir.
+	// 	or. 
+			// $notlar = array("matematik" => "90", "turkce" => "99", "ingilizce" => "95");
+			# ayni dizgiyi su sekilde de olusturabiliriz 
+			// $notlar['matematik'] = "90";
+			// $notlar['turkce'] = "99";
+			// $notlar['ingilizce'] = "95";
+
+		// associative arrayi for dongusunde kullanalim
+
+		// foreach ($notlar as $ders => $not) {
+		// 	echo "ders adi: " . $ders . " // notu: " .$not;
+		// }
+
+		// cikti su sekilde olacaktir;
+		// ders adi: matematik // notu: 90
+		// ders adi: turkce // notu: 99
+		// ders adi: ingilizce // notu: 95
+
+
+	//  c. multidimensional (cok boyutlu) arrays
+		// bir dizgi anahtarina/ogesine (misal, yukaridaki ders adi) birden cok deger eklemek, ilistirmek isteyebiliriz. bunun icin multidimensional array kullaniriz. 
+
+		// ornek olarak bir tablo olusturalim;
+
+		// || ders adi || ogrenci sayisi || not ortalamasi ||
+		//    turkce 			30					60
+		//    matematik			40					80
+		//    ingilizce 		35					01
+
+		// boyle bir tabloyu bir dizgi ile olusturabiliriz. daha dogrusu, bir dizgide tipki bu tablodaki gibi veri depolayabiliriz.
+
+		// $dersler = array
+		// (
+		// 	array("turkce", 30, 60),
+		// 	array("matematik", 40, 80),
+		// 	array("ingilizce", 35, 01)
+		// );
+
+		// simdi kendi tablomuzu yapalim...
+
+		// echo "ders adi: " . $dersler[0][0] . " || ogrenci sayisi: " . $dersler[0][1] . " || not ortalamasi: " . $dersler[0][2];
+		// echo "ders adi: " . $dersler[1][0] . " || ogrenci sayisi: " . $dersler[1][1] . " || not ortalamasi: " . $dersler[1][2];
+		// echo "ders adi: " . $dersler[2][0] . " || ogrenci sayisi: " . $dersler[2][1] . " || not ortalamasi: " . $dersler[2][2];
+
+		// fakat, buna da gerek yok. zira 100'lerce dizgi ogesi oldugu denklemde olduk bittik kahrolduk demektir... bunun icin foreach dongusu kullanabiliriz. 
+		// 1. ornek 
+		// echo "<table>";
+		// echo "<th><td>ders</td><td>ogrenci sayisi</td><td>ortalama</td></th>";
+		// foreach($dersler as $satir) {
+		// 	echo "<tr>";
+		// 	echo "<td>";
+		// 	echo "<td>" . implode('</td><td>',$satir) . "</td>"; // <-- implode, dizgiyi istedigimiz oge ile birlestirmemize yarar. burada tablo etiketleri ile birlestirerek html tablo olusturmayi sagladik
+		// 	echo "</td>";
+		// 	echo "</tr>";
+		// }
+		// echo "</table>";
+
+		// 2. ornek 
+		// echo '<table>';
+		// echo "<tr><th>ders adi</th><th>ogrenci sayisi</th><th>ortalama</th></tr>";
+		// foreach($dersler as $satir) {
+		// 	echo '<tr>';
+		// 	foreach($satir as $sutun) {  // < -- burada ise foreach ici foreach dongu olusturarak daha fonksiyonel bi yapi kurduk. implodelu kullanima nazaran, dizgi ogeleriyle bu kullanimda daha fazla oynayabilir, daha detayli, fonksiyonel islemler yapabiliriz.
+		// ayrica, yukaridaki $dersler dizgisinde 3 oge var, gordugumuz uzere. ders adi, ogrenci sayisi ve not ortalamasi. atadigimiz $satir degiskeni ile ilk ikisini, $sutun ile ikinci ve ucuncusunu listeledik. ornek ciktisini incelerseniz kafaniza daha iyi oturacaktir.
+		// 	    echo '<td>'.$sutun.'</td>';
+		// 	}
+		// 	echo '</tr>';
+		// }
+		// echo '</table>';
+
+	// d. sorting arrays / dizgi siralama 
+		// bazen dizgileri belli kurallara gore listelemeye ihtiyac duyabiliriz. php'de bunun icin on tanimli fonksiyonlar bulunmaktadir.
+		// on tanimli fonksiyonlar;
+
+		// sort() --> dizgiyi artan sekilde siralar
+		// rsort() --> dizgiyi azalan sekilde siralar
+		// asort() --> associative (cagrisimsal) dizgileri, ogelerine gore artan sekilde siralar
+		// ksort() --> associative (cagrisimsal) dizgileri, degerlere gore artan sekilde siralar 
+		// arsort() --> associative (cagrisimsal) dizgileri, ogelerine gore azalan sekilde siralar
+		// krsort() --> associative (cagrisimsal) dizgileri, degerlere gore azalan sekilde siralar 
+		// or. 
+
+		// $isimler = array("fersat", "mehmet", "harry", "habib");
+		// sort($isimler); // <-- diger tum ornekler icin de yalnizca burayi degistirmek yeterlidir. yalnizca, associative arrayler icin for degil foreach kullanmak gerekir.
+
+		// for ($i=0; $i < 3; $i++) { 
+		// 	echo $isimler[$i];
+		// 	echo "<br>";
+		// }
+		// // fersat
+		// // habib
+		// // harry seklinde cikti verir 
+	
+// 13. superglobals // supergloballer 
+	// php'de, her zaman, her yerde ulasabileceginiz bazi superglobal degiskenler vardir. bunlar su sekilde;
+	//     $GLOBALS
+	//     $_SERVER
+	//     $_REQUEST
+	//     $_POST
+	//     $_GET
+	//     $_FILES
+	//     $_ENV
+	//     $_COOKIE
+	//     $_SESSION
+
+	// a. $GLOBALS
+	// 	bu fonksiyon sayesinde, lokalden global degiskenlere ulasabiliriz. ornegin, bir fonksiyon icerisinden, fonksiyon icinde olmayan bir degiskene ulasmak istedigimizde $GLOBALS['degiskenadi'] yapmamiz yeterlidir. 
+	// 		or. $num = 15;
+	// 		 function topla($sayi){ // fonksiyon değeri alır
+	// 			$sonuc = $sayi + $GLOBALS['num']; // fonksiyon dışındaki $num değişkeni ile toplar
+	// 			return $sonuc; // sonucu geri döndürür
+	// 		 }
+	// 		 echo topla(6); // fonksiyona 6 değerini gönder ve dönen sonuu ekrana yazdır
+	
+	// b. $_SERVER
+	// 	bu superglobal sayesinde sunucu hakkinda bilgi alabiliriz. ornegin 
+	// 		$_SERVER['SERVER_ADDR'] yazarak sunucunun ip adresini yazdirabiliriz 
+	
+	// c. $_REQUEST 
+	// 	bir html formu submit edildiginde, yani form gonderildiginde, o formdaki verileri toplamak icin kullanilir.
+	// 	ornegin form'da name'i "adi" olan bolumu yazdirmak istiyoruz diyelim. bunu su sekilde yapiyoruz 
+	// 	$_REQUEST['adi']; 
+	
+	// d. $_POST
+	// 	metod'u post olarak tanimlanmis bir formdan veri cekmeye yarar. 
+	// 	$_POST['adi'] // <-- adi'nin kaynagi, html kodlarindaki name="adi" etiketidir.
+	
+	// e. $_GET 
+	// 	metod'u get olarak tanimlanmis bir formdan veri cekmeye yarar. POST'tan farkli olarak, cektigi veriyi url'ye de yansitir. sifre gibi kisisel bilgileri iceren hicbir formda get metodu kullanilmamalidir.
+
+
+
 ?>
